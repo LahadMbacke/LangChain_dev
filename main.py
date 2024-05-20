@@ -26,6 +26,7 @@ def main():
     print("[1]: If you want a joke")
     print("[2]: If you want to exit")
     print("============================")
+    print(Fore.CYAN + "Another key to the menu: " + Fore.RESET)
     choix = input("Enter your choice: ")
 
     if choix == "1":
@@ -33,6 +34,8 @@ def main():
     elif choix == "2":
         print("Goodbye!")
         exit()
+    else:
+        main()
 
 def ask():
     input_user = input("Give me a topic: ")
