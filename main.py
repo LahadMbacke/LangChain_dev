@@ -47,7 +47,7 @@ def load_file():
 
 def load_embeddings(doucuments,user_query):
     db = Chroma.from_documents(doucuments,OpenAIEmbeddings()) # permet de charger les embeddings des documents 
-    docs = db.similarity_search(user_query) # permet de chercher les documents les plus similaires à la requête de l'utilisateur
+    # docs = db.similarity_search(user_query) # permet de chercher les documents les plus similaires à la requête de l'utilisateur
     return db.as_retriever()
 
 def generate_response(retriever,query):
@@ -64,6 +64,31 @@ def query(query):
    documents =  load_file()
    retriever = load_embeddings(documents,query) # charger les embeddings des documents et de chercher les documents les plus similaires à la requête de l'utilisateur
    response = generate_response(retriever,query)
-   print(Fore.GREEN + response)  
+   return response 
 
-query("Quelle est la politique de remboursement ?")
+
+
+def main():
+
+    print("===========Bienvenue dans le chatbot de support client : ===========")
+    print("++++++++++++++++++MENU++++++++++++++++++++")
+    print("[1]Pour poser une question")
+    print("[2]. Pour quitter")
+    print("++++++++++++++++++++++++++++++++++++++++++")
+
+    input_user = input("Entrez votre choix : ")
+    if input_user=="1":
+        ask()
+    elif input_user=="2":
+        print("Au revoir !")
+        exit()
+
+
+def ask():
+    query_user = input("Entrez votre question : ")
+    respons = query(query_user)
+    print(Fore.GREEN + respons)
+
+
+if __name__ == '__main__':
+    main()
