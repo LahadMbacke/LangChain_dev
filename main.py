@@ -15,7 +15,7 @@ def format_response(result):
 model = ChatOpenAI(model = "gpt-3.5-turbo")
 prompt = ChatPromptTemplate.from_template("Tel me a joke about {topic}")
 
-chain = prompt | model | StrOutputParser()
+chain = prompt | model | format_response
 
 chain.invoke({"topic": "Liverpool FC"})
 
