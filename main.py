@@ -9,7 +9,7 @@ from langchain.prompts.chat import (HumanMessagePromptTemplate, SystemMessagePro
 
 from langchain.schema import StrOutputParser
 from langchain.schema.runnable import RunnablePassthrough
-from langchain.vectorstores import chroma
+from langchain.vectorstores import Chroma
 
 from colorama import Fore
 
@@ -34,10 +34,19 @@ def load_file():
     text_spliter = CharacterTextSplitter(chunk_size=100,chunk_overlap=0) # permet de découper le texte en morceaux de 1000 caractères
     documents = loader.load()
     chunks = text_spliter.split_documents(documents)
-    print(f"Number of documents {len(documents)},Number of chunks: {len(chunks)}")
+    # print(f"Number of documents {len(documents)},Number of chunks: {len(chunks)}")
+    return chunks
 
 
-def query(que):
-    load_file()
+def load_embeddings(doucuments,user_query):
+    db = Chroma.from_documents(doucuments,OpenAIEmbeddings()) # permet de charger les embeddings des documents 
+    docs = db.similarity_search(user_query) # permet de chercher les documents les plus similaires à la requête de l'utilisateur
+    print(f"Similarity search result: {docs}")
+    return db.as_retriever()
 
-query("Quelle est la politique de remboursement ?")
+def query(query):
+   documents =  load_file()
+   retriver = load_embeddings(documents,query) # permet de charger les embeddings des documents et de chercher les documents les plus similaires à la requête de l'utilisateur
+   
+query("Quelle est la capital du Senegal ?")
+# query("Quelle est la politique de remboursement ?")
