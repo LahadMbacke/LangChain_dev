@@ -1,5 +1,4 @@
-# Chatbot de Support Client - README
-
+# Chatbot de Support Client
 ## Introduction
 Une brève introduction à votre projet de chatbot de support client, expliquant son objectif et ses fonctionnalités principales.
 
@@ -30,15 +29,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-4. Créer un fichier .env à la racine du projet et y ajouter votre clé API OpenAI :
-```bash
-echo "OPEN
-```
 
-5. Créer un fichier faq_fr.txt à la racine du projet et y ajouter les questions fréquentes et leurs réponses :
-```bash
-echo "Quelle est la météo aujourd'hui ?\nLa météo est ensoleillée." > faq_fr.txt
-```
 
 ## Utilisation
 Instructions pour utiliser le projet :
