@@ -15,7 +15,6 @@ Instructions étape par étape pour installer et configurer le projet :
 1. Cloner ce dépôt :
 ```bash
 git clone https://github.com/votre-dépôt/chatbot-support-client.git
-cd chatbot-support-client
 ```
 
 2. Créer un environnement virtuel et l'activer :
